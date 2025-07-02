@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block title %}Modify Expenses{% endblock %}
+{% block content %}
+<style>
+   
+  table{
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 5px;
+    background-color:var(--table-color-2);
+    max-height: 150px;
+  }
+  th{
+    
+    text-align: center;
+        justify-items: center;
+        position: sticky;
+        z-index: 1;
+  }
+  th,td{
+    padding:8px;
+    text-align: center;
+    border-bottom: 2px solid rgb(99, 95, 95);
+    color: var(--text-color-3);
+
+  }
+  tr:hover{
+    background-color:var(--hover-color);
+  }
+  h2{
+    text-align: center;
+    margin-top: 17px;
+    color:var(--text-color-3);
+  }
+a button{
+  display: flex;
+  
+   background-color:#007bff;
+   padding: 8px 15px;
+   border-radius: 10px;
+   margin: 0px;
+   box-sizing: border-box;
+   text-decoration: none;
+   border: none;
+   color: white;
+   font-weight: 500;
+   }
+   button:hover{
+    background: rgb(138, 138, 172);
+   }
+   .modify{
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: center;
+    /* align-items: center;  */
+    padding: 10px;
+    width: 80%;
+    min-height: 60vh;
+    margin: 18px 60px;
+    padding-right: 7px;
+    background:var(--box-color);
+    border-radius: 20px;
+    box-shadow: 0 3px 15px rgba(146, 145, 145, 0.205);
+    max-height: 450px;
+    overflow-y: auto;
+
+   
+  }
+  
+   .modify::-webkit-scrollbar{
+    width: 8px;
+    height: 8px;
+
+   }
+   .modify::-webkit-scrollbar-thumb{
+    background-color: #475569;
+    border-radius: 8px;
+   }
+   .modify::-webkit-scrollbar-track{
+    background-color: #1e293b;
+    border-radius: 4px;
+   }
+  .buttt button{
+     display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  /* font-size: large; */
+
+  }
+  button:hover{
+     background-color: #435ce7bb;
+      cursor:pointer;
+      transform: scale(1.02);
+      transition: background-color 0.3s ease;
+}
+  
+
+</style>
+
+<h2 style="color: var(--text-color-2)">Modify Expenses</h2>
+<div class="modify">
+<table>
+  <tr>
+    <th>Date & Time</th>
+    <th>Title</th>
+    <th>Category</th>
+    <th>Amount (₹)</th>
+    <th>Actions</th>
+  </tr>
+  {% for expenses in expenses %}
+  <tr>
+    <td>{{ expenses.date.strftime( '%Y-%m-%d') }}</td> 
+    <td>{{ expenses.title }}</td>
+    <td>{{ expenses.category}}</td>
+    <td>{{ expenses.amount }}</td>
+
+
+    <td>
+      <div class="buttt">
+      <a href="/edit/{{ expenses.id }}"><button> {% if bg_color =='#0d1b2a' %} <img src="/static/icons/write_5828638 (1).png" width="18px"> {% else %} <img src="/static/icons/write_5828638 (1).png" width="18px"> {% endif %}  Edit</button></a>
+
+
+      <a href="/delete/{{ expenses.id }}" onclick="return confirm('Delete this expense?');"><button style="color:red;">  {% if bg_color =='#0d1b2a' %} <img src="/static/icons/delete_6861362.png" width="20px"> {% else %} <img src="/static/icons/delete_6861362.png" width="20px"> {% endif %}  Delete</button></a>
+      </div>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+</div>
+{% endblock %}

@@ -1,0 +1,256 @@
+{% extends "base.html" %}
+{% block title %}Hom{% endblock %}
+{% block content %}
+<style>
+  
+  table{
+    width: 90%;
+    border-collapse: collapse;
+
+    background-color: var(--table-color);
+   max-height:  200px;
+    overflow:auto;
+    
+  }
+  th{
+    
+    text-align: center;
+        justify-items: center;
+        color: var(--text-color-3);
+  }
+  th,td{
+    padding:12px;
+    color:var(--text-color-3);
+    text-align: left;
+    border-bottom: 1px solid #334155;
+
+  }
+  tr:hover{
+    background-color:var(--hover-color);
+  }
+  h2{
+    margin: 20px;
+    
+  }
+ .but button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+   /* background-color: rgb(92, 92, 212); */
+   padding: 10px 20px;
+   border-radius: 10px;
+   margin:10px 0;
+   border: none;
+   color: white;
+   font-weight: 700;
+   }
+   .but button:hover{
+    /* background-color: #506ba7;
+     */
+
+   }
+   .but img{
+    padding: 0px 6px;
+    margin-right: 4px;
+   }
+    select,button {
+      padding: 10px;
+      background-color: #1e3a8a;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-weight: bold;
+    }
+
+    select:hover,button:hover {
+      background-color: #2563eb;
+      cursor:pointer;
+      transform: scale(1.02);
+      transition: background-color 0.3s ease;
+}
+   .head{
+    display: flex;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    justify-content:center;
+    align-items: center;text-align: center;
+    padding: 15px;
+    padding-right: 0;
+    margin-left: 30px;
+    margin-bottom: 0;
+    /* padding: 10px; */
+    width: 80%;
+    /* max-height: 600px; */
+    background: var(--box-color);
+    /* background-color: #0b1629; */
+    border-radius: 20px;
+    box-shadow: 0 3px 15px rgba(112, 97, 97, 0.205);
+
+   }
+   .table{
+     display: flex;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    justify-content:center;
+    align-items: center;text-align: center;
+   max-height: 250px;
+    width: 90%;
+    overflow-y: auto;
+   }
+   .table::-webkit-scrollbar{
+    width: 8px;
+    height: 8px;
+
+   }
+   .table::-webkit-scrollbar-thumb{
+    background-color: #475569;
+    border-radius: 8px;
+   }
+   .table::-webkit-scrollbar-track{
+    background-color: #1e293b;
+    border-radius: 4px;
+   }
+   .but{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+    
+   }
+   .expense{
+    display: flex;
+    /* background: var(--box-color); */
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+    margin-left: 40px;
+    width: 90%;
+   }
+   .foot{
+    display: flex;
+
+   }
+   .filter-form{
+    position: fixed;
+    z-index: 10;
+    right: 20px;
+    top: 90px;
+    display: flex;
+    /* flex-wrap: wrap; */
+    flex-direction: column;
+    gap: 5px;
+    width: 10vw;
+    margin: 0;
+    padding: 10px;
+    color: var(--text-color-2);
+    background-color:var(--box-color);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(1, 0, 0, 0.205);
+   }
+   .filter-form label{
+    font-weight: 500;
+    margin-right: 5px;
+   }
+   .filter-form select,.filter-form input[type="date"]{
+    padding: 5px 10px ;
+    border-radius:7px ;
+    border: 1px solid black;
+    color: var(--text-color-3);
+    
+  }
+  .filter-form option{
+    color: var(--text-color-3);
+    
+   }
+   .filter-form button{
+    padding: 6px 12px;
+    /* background-color: #007bff; */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 400;
+   }
+</style>
+<h2 style="color: var(--text-color-2); margin:28px 60px; margin-bottom: 20px;">Your Expenses</h2>
+<form method="GET" action="/expenses" style="margin-bottom: 20px" class="filter-form">
+  <!-- <label>Category:</label>
+  <select name="category">
+    <option value="">All</option>
+      <option value="Food">Food</option>
+      <option value="Grosery">Grosery</option>
+      <option value="Clothing">Clothing</option>
+      <option value="Bills">Bills</option>
+      <option value="Travel">Travel</option>
+    <option value="Rent">Rent</option>
+
+  </select>
+
+  <label>Date Range:</label>
+  <input type="date" name="start_date">
+  to
+  <input type="date" name="end_date">
+
+  <label>Sort By:</label>
+  <select name="sort_by">
+    <option value="date_desc">Newest First</option>
+    <option value="date_asc">Oldest First</option>
+    <option value="amount_desc">Amount High to Low</option>
+    <option value="amount_asc">Amount Low to High</option>
+  </select>
+  
+  <button type="submit">Apply</button>
+</form> -->
+<!-- <form method="get" style="margin: 20px auto; display: flex; gap: 10px; justify-content: center;"> -->
+  <select name="month">
+    <option value="">Month</option>
+    {% for m in range(1,13) %}
+      <option value="{{ m }}" {% if request.args.get('month') == m|string %}selected{% endif %}>{{ m }}</option>
+    {% endfor %}
+  </select>
+  <select name="year">
+    <option value="">Year</option>
+    {% for y in range(2020, 2030) %}
+      <option value="{{ y }}" {% if request.args.get('year')  == y|string %}selected{% endif %}>{{ y }}</option>
+    {% endfor %}
+  </select>
+  <select name="category">
+    <option>All</option>
+    <option {% if selected_category == "Food" %}selected{% endif %}>Food</option>
+    <option {% if selected_category == "Bills" %}selected{% endif %}>Bills</option>
+    <option {% if selected_category == "Travel" %}selected{% endif %}>Travel</option>
+    <option {% if selected_category == "Others" %}selected{% endif %}>Others</option>
+  </select>
+  <button type="submit">Filter</button>
+</form>
+
+<div class="expense">
+<div class="head">
+  <div class="table">
+<table>
+  <tr>
+    <th>Title</th>
+    <th >Amount</th>
+
+    <th>Category</th>
+    <th>Date</th>
+    </tr>
+  {% for expenses in expenses %}
+    <tr>
+      <td>{{ expenses.title }}</td>
+       <td >₹{{ expenses.amount }}</td>
+      <td>{{ expenses.category }}</td> 
+      <td>{{ expenses.date.strftime( '%Y-%m-%d') }}</td> 
+
+      </tr>
+      {% endfor %}
+    </table></div>
+    <h2>Total expenses: {{ total_amount }}</h2><br><br></div>
+    <div class="foot"></div>
+    <div class="but">
+    <a href="/modify"><button> {% if bg_color =='#0d1b2a' %} <img src="/static/icons/write_5828638 (1).png" width="23px"> {% else %} <img src="/static/icons/write_5828638 (1).png" width="23px"> {% endif %} Edit</button></a>
+
+    <a href="/add"><button>  {% if bg_color =='#0d1b2a' %} <img src="/static/icons/add-yello.png" width="21px"> {% else %} <img src="/static/icons/add_6569764.png" width="21px"> {% endif %} Add More
+    </button>  </a>
+</div>
+    </div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Settings{% endblock %}
+{% block content %}
+<style>
+  .set{
+    margin: 40px;
+  }
+  input, select{
+    width: 20%;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  button{
+    padding: 15px 20px ;
+    margin: 10px;
+    background-color: rgb(122, 226, 122);
+    border: none;
+    font-weight: 600;
+  }
+  button:hover{
+    background-color: rgb(56, 231, 56);
+    cursor: pointer;
+  }
+</style>
+<div class="set">
+<h2 style="color: var(--text-color-2)">Settings</h2>
+<form method="POST">
+  <label for="bg_color">Choose Background Color:</label>
+  <select name="bg_color" id="bg_color">
+    <option value="rgb(240, 234, 234)" >White</option>
+    <option value="lightgray" >gray</option>
+    <option value="lightblue" >blue</option>
+    <option value="#0d1b2a">black</option>
+    <option value="beige">beige</option>
+  </select>
+
+  <button type="submit">Save</button>
+</form></div>
+{% endblock %}

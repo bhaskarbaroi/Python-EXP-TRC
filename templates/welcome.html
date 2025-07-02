@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome</title>
+  <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background: linear-gradient(90deg, #7289f1, #8b5abd,#e6648d);
+
+            font-family: 'Segoe UI',Tahoma;
+        }
+        .body{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            /* margin-top: 2rem; */
+            align-items: center;
+            justify-content: center;
+            height: 70vh;
+            font-family: poppins,sans-serif;
+
+
+        }
+        h1{
+            /* margin: 10px; */
+            background-image: linear-gradient(to right,white,#eeeeb7,#f2f39c);
+            color: transparent;
+            background-clip: text;
+
+            /* margin-bottom: 30px; */
+        }
+        .body p{
+             margin: 10px;
+            background-image: linear-gradient(to right,white,#eeeeb7,#f1f37c);
+            color: transparent;
+            background-clip: text;
+
+            margin-bottom: 30px;
+        }
+        .btn{
+            padding: 10px 80px;
+            margin: 10px;
+            background: rgb(76, 76, 240);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            
+        }
+        .btn:hover{
+            cursor: pointer;
+            /* background: rgb(106, 106, 226); */
+            transform: scale(1.06);
+                }
+        .btn.btn2:hover{
+            /* background: rgba(243, 239, 239, 0.966); */
+            /* color: rgb(66, 65, 65); */
+        }
+        .btn1{
+            background:linear-gradient(135deg,#0a58ca,#4287f7);
+
+        }
+        .btn2{
+            border: 1px solid rgb(46, 46, 48);
+            padding: 10px 70px;
+            color:#262627;
+            box-sizing: border-box;   
+            background:linear-gradient(135deg,#f86a3e,#f8a88b);
+
+
+        }
+        .logo{
+            margin: 10px;
+            padding: 9px;
+        }
+     </style>
+</head>
+<body>
+    <div class="logo">
+        <span class="logo-icon"><img src="static/icons/button_7586646.png" width=18px></span>
+        <span style="font-weight: 600; font-family: Arial; font-size: 20px;">Welcome</span>
+  <div class="body">
+
+    <h1>Welcome to Expense Tracker</h1>
+    <p>You Can Stored Your Daily Expenses</p>
+    <a href="/login" class="btn btn1">Login</a>
+    <a href="/register" class="btn btn2">Register</a>
+  </div>
+</body>
+</html>

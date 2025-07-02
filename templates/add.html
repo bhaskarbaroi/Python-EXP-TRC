@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<style>
+  form{
+    width:500px;
+    /* width: 100%; */
+    margin: 30px auto;
+    padding: 20px;
+    background:var(--table-color);
+    border-radius:10px;
+        box-shadow: 0 0 15px rgba(1, 0, 0, 0.205);
+
+
+  }
+  input, select{
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  button{
+    padding: 10px 20px ;
+    background-color: #197619;
+    color: wheat;
+    border: none;
+    border-radius: 7px;
+  }
+  h2{
+    font-size: 26px;
+    text-align: center;
+  }
+   input,select{
+   background-color: #1e3a8a;
+    border: none;
+      border-radius: 6px;
+      color: white !important;
+      font-weight: bold;
+      /* padding: 10px; */
+  }input::placeholder{
+    color: white;
+  }
+  input:hover,select:hover{
+    transform: scale(1.02);
+  }
+  .butt button{
+     display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: large;
+  margin: 15px 0px;
+
+  }
+  button:hover{
+     background-color: #2bb110bb;
+      cursor:pointer;
+      transform: scale(1.02);
+      transition: background-color 0.3s ease;
+}
+  
+</style>
+<h2 style="color: var(--text-color-2)">Add Expenses</h2>
+<form method="POST">
+  <input class="my-input" type="text" name="title" placeholder="Title " required>
+  <select style="width: 95%;" name="category" required>
+    <option value="">Select category</option>
+    <option value="Grosery">Grosery</option>
+    <option value="Food">Food</option>
+    <option value="Clothing">Clothing</option>
+    <option value="Travel">Travel</option>
+    <option value="Bills">Bills</option>
+    <option value="Others">Other</option>
+  </select>
+  <input type="number" name="amount" placeholder="Amount" required>
+  <input style="" type="date" name="date" required>
+  <div class="butt">
+  <button type="submit">   {% if bg_color =='#0d1b2a' %} <img src="/static/icons/add-black.jpg" width="20px"> {% else %} <img src="/static/icons/add_6569764.png" width="20px"> {% endif %}  Add</button></div>
+</form>
+{% endblock %}

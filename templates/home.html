@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<style>
+    body{
+        background-color: rgba(182, 208, 235);
+      
+    }
+    h1{
+        color: var(--text-color-2);
+        margin-top: 40px;
+    }
+    
+    h2,p{
+        color: var(--text-color);
+    }
+    h2:hover{
+
+    }
+    .uname{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* padding-left: 6px; */
+    }
+    .name{
+        padding:0px 8px;
+    }
+    .name:hover{
+        background-image: linear-gradient(to left,#f3341b,rgb(235, 85, 26),#eebe21e3);
+         color: transparent;
+            background-clip: text;
+            font-size: 24px;
+            font-weight: 600;
+
+    }
+    .home,.home2{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .display_exp{
+        display: flex; 
+        gap: 20px;
+         justify-content: center;
+         margin-top: 30px;
+    }
+    .today_exp{
+    background: #0e3055b4; 
+
+    border-radius: 10px; 
+    padding: 20px; 
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .today_exp:hover,.month_exp:hover{
+            background:linear-gradient(to left,#f3341b,rgb(235, 85, 26),#eebe21e3);
+            transform: scale(1.03);
+        transition: background-color 0.3s ease;
+
+
+    }
+    .today_exp p{
+font-size: 1.4em; font-weight: bold; color: #edf0f3dc;
+    }
+    .month_exp,.today_exp{
+        margin-left: 20px;
+background: #0e3055b4; border-radius: 10px; padding: 20px; box-shadow: 0 0 3px rgba(180, 174, 174, 0.5);
+    }
+    .month_exp p{
+        font-size: 1.4em; font-weight: bold; color: #edf0f3dc;
+    }
+
+    .foot{
+        text-align: center; margin-top: 25px;
+        
+    }
+    .foot a{
+        padding: 10px 20px; background: #1b63e0; color: white; text-decoration: none; border-radius: 8px;
+    }
+    .foot a:hover{
+        background-color: #437ad8e3;
+        transition: background-color 0.3s ease;
+        transform: scale(1.007);
+    }
+</style>
+
+
+<div class="home">
+    <h1>Welcome to our Expense Tracker </h1></div>
+    <div class="uname">
+    <h2>dear !  <h2 class="name">{{ username.title() }}</h2></h2></div>
+    <div class="home2">
+<p>Here u can add your expenses </p>
+<p>Track your expenses smartly!</p>
+</div>
+<div class="display_exp">
+  <div  class="today_exp"  >
+    <h3>Today's Expenses</h3>
+    <p >₹ {{ total_today }}</p>
+  </div>
+  <div class="month_exp"  >
+    <h3>This Month's Total</h3>
+    <p >₹ {{ total_month }}</p>
+  </div>
+</div>
+
+<div class="foot"  >
+  <a href="/expenses" >View Monthly Summary</a>
+</div>
+
+
+{% endblock %}

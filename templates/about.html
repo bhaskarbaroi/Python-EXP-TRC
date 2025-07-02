@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<style>
+       body{
+        background-color: rgba(182, 208, 235);
+    }
+    .about,.about2{
+        padding: 10px;
+        margin: 2px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
+<div class="about">
+<h2 style="color: var(--text-color-2)">About</h2>
+</div>
+<div class="about2">
+<p>Just a simple expense track web </p>
+<p>    Build for my Final Semester Project
+</p>
+</div>
+{% endblock %}
