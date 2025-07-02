@@ -3,7 +3,7 @@ services:
     name: expense-tracker
     env: python
     buildCommand: ""
-    startCommand: gunicorn app:app
+    startCommand: python app:app
     plan: free
     envVars:
       - key: FLASK_ENV
