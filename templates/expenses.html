@@ -248,13 +248,16 @@ button{
   width: 60%;
  }
  select,.filter-form button{
-  width: 90%;
-  font-size:8px;
+  width: 100%;
+  font-size:1rem;
+  padding:12 px;
 }
+.filter-form select
 button{
-  font-size: 8px;
-  padding: 12px;
+  /* font-size: 7px; */
+  padding:12px;
   width: 80%;
+  font-size: 1rem;
 }
 
 
@@ -262,7 +265,7 @@ button{
   flex-direction: column;
   align-items: stretch;
    position: fixed;
-  
+  /* padding: 20px; */
    right: 33px;
    top: 123px;
 }
@@ -288,6 +291,9 @@ button{
     <option {% if selected_category == "Food" %}selected{% endif %}>Food</option>
     <option {% if selected_category == "Bills" %}selected{% endif %}>Bills</option>
     <option {% if selected_category == "Travel" %}selected{% endif %}>Travel</option>
+    <option {% if selected_category == "Others" %}selected{% endif %}>Grosery</option>
+    <option {% if selected_category == "Others" %}selected{% endif %}>Food</option>
+    <option {% if selected_category == "Others" %}selected{% endif %}>Clothing</option>
     <option {% if selected_category == "Others" %}selected{% endif %}>Others</option>
   </select>
   <button type="submit">Filter</button>
