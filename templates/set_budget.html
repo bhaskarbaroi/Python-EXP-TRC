@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}set_budget {% endblock %}
+{% block content %}
+<style>
+  .form{
+    max-width:500px;
+    /* width: 100%; */
+    margin: 30px auto;
+    padding: 20px;
+    background: var(--box-color);
+    border-radius:10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.158);
+
+  }
+  input, select{
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+  }
+  button{
+    padding: 10px 20px ;
+    background-color: oklab(49.496% -0.12127 0.09185);
+    color: wheat;
+    border: none;
+    border-radius: 7px;
+  }
+  h2{
+    text-align: center;
+  }
+  </style>
+  <div class="form">
+
+<h2>Set Your Monthly Budget</h2>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul>
+      {% for category, message in messages %}
+      <li style="color:
+       {% if category == 'success' %}lightgreen
+       {% elif category == 'warning' %}orange
+       {% else %}white
+       {% endif %};">{{ message }}</li>
+      {% endfor %}
+          </ul>
+  {% endif %}
+{% endwith %}
+
+  <form method="POST">
+    <input type="number" name="budget" step="0.01" placeholder="e.g. 10000" required>
+    <button type="submit">Save Budget</button>
+  </form>
+
+{% endblock %}

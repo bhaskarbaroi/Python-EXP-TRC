@@ -2,7 +2,9 @@
 {% block title %}Hom{% endblock %}
 {% block content %}
 <style>
-  
+  body{
+    position: relative;
+  }
   table{
     width: 90%;
     border-collapse: collapse;
@@ -53,7 +55,7 @@
     padding: 0px 6px;
     margin-right: 4px;
    }
-    select,button {
+    select, button {
       padding: 10px;
       background-color: #1e3a8a;
       border: none;
@@ -133,8 +135,8 @@
    .filter-form{
     position: fixed;
     z-index: 10;
-    right: 20px;
-    top: 90px;
+    right: 22px;
+    top: 137px;
     display: flex;
     /* flex-wrap: wrap; */
     flex-direction: column;
@@ -170,6 +172,48 @@
     cursor: pointer;
     font-weight: 400;
    }
+   .summary-box{
+    margin-left: 50px;
+    padding-bottom: 50px;
+    line-height: 30px;
+    /* background-color: #242527; */
+    /* width: 400px; */
+    margin-bottom: 80px;
+  }
+  .summary-box h3{
+    background-color: #131d38c7;
+    width: 280px;
+    padding: 7px;
+    border-radius: 12px;
+
+   }
+  .summary-box h3:hover{
+    background-color:var(--hover-color);
+  }
+
+   .set_g{
+    display: flex;
+    align-items:flex-start;
+    /* justify-content; */
+
+    
+  }
+  .set_g button{
+    
+    border-collapse: collapse;
+    display: flex;
+    justify-content: center;
+  align-items: center;
+   border-radius: 10px;
+   margin:0px 10px;
+   margin-left: 80px;
+   border: none;
+   margin-top: 20px;
+   height: 40px;
+   color: white;
+   font-weight: 700;
+}
+
 </style>
 <h2 style="color: var(--text-color-2); margin:28px 60px; margin-bottom: 20px;">Your Expenses</h2>
 <form method="GET" action="/expenses" style="margin-bottom: 20px" class="filter-form">
@@ -253,4 +297,23 @@
     </button>  </a>
 </div>
     </div>
+    <div class="summary-box">
+      <div class="set_g">
+
+  <h3>💸 Planned Budget: ₹{{ budget }}</h3>
+
+  <button><a href="/set_budget">Set Your budget</a></button>
+</div>
+  <h3>📊 Actual Expense: ₹{{ total_amount }}</h3>
+  <h3>
+    {% if total_amount <= budget %}
+      ✅ Under Budget by ₹{{ budget - total_amount }}
+    {% else %}
+      ❗ Over Budget by ₹{{ total_amount - budget }}
+    {% endif %}
+</h3>
+</div>
+
+
+   
 {% endblock %}

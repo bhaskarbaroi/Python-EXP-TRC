@@ -4,6 +4,7 @@
 <style>
     body{
         background-color: rgba(182, 208, 235);
+        position: relative;
       
     }
     h1{
@@ -32,6 +33,27 @@
             background-clip: text;
             font-size: 24px;
             font-weight: 600;
+
+    }
+    .set_g{
+    background:linear-gradient(to left,#fc452d,rgb(248, 152, 63),#f1e75be3);
+        display: flex;
+        align-items: center;
+        display: flex;
+    align-items: center;
+    align-content: center;
+    padding: 14px;
+    width: 98px;
+    border-radius: 93px;
+    position: absolute;
+    top: 79px;
+    right: 53px;
+    z-index: 10;
+}
+    
+    .set_g:hover{
+            background:linear-gradient(to left,#f5452d,rgb(233, 133, 39),#d8af2ae3);
+            transform: scale(1.04);
 
     }
     .home,.home2{
@@ -71,7 +93,7 @@ background: #0e3055b4; border-radius: 10px; padding: 20px; box-shadow: 0 0 3px r
     }
 
     .foot{
-        text-align: center; margin-top: 25px;
+        text-align: center; margin-top: 65px;
         
     }
     .foot a{
@@ -90,8 +112,13 @@ background: #0e3055b4; border-radius: 10px; padding: 20px; box-shadow: 0 0 3px r
     <div class="uname">
     <h2>dear !  <h2 class="name">{{ username.title() }}</h2></h2></div>
     <div class="home2">
+
 <p>Here u can add your expenses </p>
 <p>Track your expenses smartly!</p>
+</div>
+<div class="set_g">
+    <a href="/set_budget">Set Your budget</a>
+</div>
 </div>
 <div class="display_exp">
   <div  class="today_exp"  >

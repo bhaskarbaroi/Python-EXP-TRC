@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session ,flash
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import extract, func
+
 from datetime import datetime,date
 app = Flask(__name__)
 app.secret_key = "supersecretkey"
@@ -119,6 +121,7 @@ def view_expenses():
 
     expenses = query.order_by(Expense.date.desc()).all()
     total_amount = sum(e.amount for e in expenses)
+    budget = session.get('monthly_budget', 0)
 
     return render_template(
         "expenses.html",
@@ -129,8 +132,21 @@ def view_expenses():
         selected_year=selected_year,
         selected_category=selected_category,
         username=user.username,
-        bg_color=user.bg_color
+        bg_color=user.bg_color,
+        budget = budget
 )
+@app.route('/set_budget', methods=['GET', 'POST'])
+def set_budget():
+    user = User.query.get(session.get("user_id")) 
+
+    if request.method == 'POST':
+        session['monthly_budget'] = float(request.form['budget'])
+        flash('Monthly budget set successfully!', 'success')
+        return redirect('/expenses')
+    if 'monthly_budget' in session:
+        flash(f"budget already set: ₹{session['monthly_budget']}. you can update it. ","warning")
+      
+    return render_template('set_budget.html', username=user.username,bg_color=user.bg_color)
 
 @app.route("/modify")
 def modify_expenses():
@@ -179,14 +195,37 @@ def settings():
     
     return render_template("settings.html", username=user.username, bg_color=user.bg_color)
 
-@app.route("/graph")
+@app.route('/graph')
 def graph():
     if "user_id" not in session:
         return redirect(url_for("login"))
     user = User.query.get(session.get("user_id")) 
-   
     expenses = Expense.query.all()
-    return render_template("graph.html", expenses=expenses, username=user.username, bg_color=user.bg_color)
+   
+
+    # Category-wise total for Pie Chart
+    category_data = db.session.query(
+        Expense.category,
+        func.sum(Expense.amount)
+    ).filter_by(user_id=user.id).group_by(Expense.category).all()
+
+   
+    categories = [c[0] for c in category_data]
+    category_totals = [c[1] for c in category_data]
+
+  
+    return render_template("graph.html",
+        expenses=expenses, username=user.username, bg_color=user.bg_color,
+        categories=categories,
+        category_totals=category_totals,
+       
+)
+
+@app.route("/set-budget")
+def set_bu():
+    user = User.query.get(session.get("user_id")) 
+
+    return render_template("set-budget.html", username=user.username, bg_color=user.bg_color)
 
 @app.route("/logout")
 def logout():

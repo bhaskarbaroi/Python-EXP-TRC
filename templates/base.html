@@ -12,11 +12,13 @@
       --text-color-2: {% if bg_color =='#0d1b2a' %}#9898f5{% else %}rgb(27, 26, 25){% endif %};
       --text-color-3: {% if bg_color =='#0d1b2a' %}#93c5fd{% else %}rgb(27, 26, 25){% endif %};
       --text-color-4: {% if bg_color =='#0d1b2a' %}#f0f0f0{% else %}rgb(27, 26, 25){% endif %};
+      
+      --text-color-5: {% if bg_color =='#0d1b2a' %}#9898f5{% else %}rgb(236, 235, 231){% endif %};
       --sidebar-color: {% if bg_color =='#0d1b2a' %}#020b14{% else %}#a8a7a7d7{% endif %};
       --input-bg: {% if bg_color =='#0d1b2a' %}#333{% else %}white{% endif %};
       --input-text: {% if bg_color =='#0d1b2a' %}white{% else %}black{% endif %};
       --input-boder: {% if bg_color =='#0d1b2a' %}#aaa{% else %}gray{% endif %};
-      --box-color: {% if bg_color =='#0d1b2a' %}#0b1629{% else %} rgb(233, 233, 224){% endif %};
+      --box-color: {% if bg_color =='#0d1b2a' %}#0b1629{% else %} rgb(189, 189, 181){% endif %};
       --table-color: {% if bg_color =='#0d1b2a' %}#FFFFFF05{% else %} #fffd77{% endif %};
       --table-color-2: {% if bg_color =='#0d1b2a' %}#FFFFFF05{% else %} #fdfdfd{% endif %};
       --hover-color: {% if bg_color =='#0d1b2a' %}#1e293b{% else %} rgb(233, 233, 224){% endif %};
@@ -39,8 +41,8 @@
         color: #222;
         padding: 20px;
       color:var(--text-color);
-      height: 100%;
       min-height: 98vh;
+      min-height: 100%;
       /* background-color: #757272f1;  */
      }
     main {
@@ -117,12 +119,17 @@
 
         
       }
+        .uname:hover{
+        background-image: linear-gradient(to left,#f3341b,rgb(235, 85, 26),#eebe21e3);
+         color: transparent;
+            background-clip: text;
+        }
   </style>
 </head>
 <body style="background-color: {{ bg_color }};" >
   {% if username %}
   <aside>
-    <div class="profile"><img src="/static/icons/manager.png" alt="" width="59px" >{{ username.title() }}</div>
+    <div class="profile"><img src="/static/icons/manager.png" alt="" width="59px" ><h3 class="uname" >{{ username.title() }}</h3></div>
     <div class="home">
     <a href="/home" ><img src="/static/icons/home-page_3905030.png" width="20" alt="">Home</a>
     </div>
