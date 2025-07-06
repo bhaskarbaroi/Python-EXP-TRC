@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}About{% endblock %}
 {% block content %}
 <style>
        body{
@@ -12,6 +12,25 @@
         flex-direction: column;
         align-items: center;
     }
+    .about2{
+        margin-bottom: 40px;
+
+    }
+    .link a{
+        display: flex;
+         justify-content: center;
+        align-items: center; 
+        background-color: rgb(28, 28, 68);
+        padding: 20px;
+        width: 240px;
+        margin: auto;
+        margin-top: 30px;
+        border-radius: 16px;
+    }
+     .link :hover{
+            background:linear-gradient(to left,#f81f02,rgb(245, 121, 6),yellow);
+            transform: scale(1.04);
+    }
 </style>
 <div class="about">
 <h2 style="color: var(--text-color-2)">About</h2>
@@ -20,5 +39,8 @@
 <p>Just a simple expense track web </p>
 <p>    Build for my Final Semester Project
 </p>
+</div>
+<div class="link">
+    <a target="_blank" href="https://python-exp-trc.onrender.com/">Vist our app</a>
 </div>
 {% endblock %}

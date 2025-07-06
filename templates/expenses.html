@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Hom{% endblock %}
+{% block title %}Expenses{% endblock %}
 {% block content %}
 <style>
   body{
@@ -129,7 +129,7 @@
 
    }
    .filter-form{
-    position: fixed;
+    position: absolute;
     z-index: 10;
     right: 22px;
     top: 137px;
@@ -175,11 +175,13 @@
     /* background-color: #242527; */
     /* width: 400px; */
     margin-bottom: 80px;
+    /* line-height: 2; */
   }
   .summary-box h3{
     background-color: #131d38c7;
     width: 280px;
     padding: 7px;
+    margin: 10px;
     border-radius: 12px;
 
    }
@@ -189,7 +191,7 @@
 
    .set_g{
     display: flex;
-    align-items:flex-start;
+    /* align-items:flex-start; */
     /* justify-content; */
 
     
@@ -207,7 +209,7 @@
    margin-top: 20px;
    height: 40px;
    color: white;
-   font-weight: 700;
+   font-weight: 500;
 }
 
 @media screen and (max-width:1200px){
@@ -224,8 +226,8 @@ h2{
 .filter-form{
   flex-direction: column;
   align-items: stretch;
-   position: fixed;
-   right: 16px;
+   position: absolute;
+   right: 10px;
     top: 121px;
   
 }
@@ -238,39 +240,53 @@ select,.filter-form button{
 }
 button{
   font-size: 11px;
-  padding: 13px;
+  /* padding: 13px; */
 }
 
 
 }
 @media screen and (max-width:768px){
+  table{
+    width: 100%;
+  }
+  .expensess{
+    margin: 0;
+  }
  .set_g button{
-  width: 60%;
+  width: 50%;
+  /* margin: 0; */
+ 
  }
- select,.filter-form button{
+ select{
   width: 100%;
-  font-size:1rem;
-  padding:12 px;
+  font-size:0.9rem;
+  padding:auto;
 }
 .filter-form select
-button{
+{
   /* font-size: 7px; */
-  padding:12px;
+  padding:3px 9px;
   width: 80%;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 
  .filter-form{
   flex-direction: column;
   align-items: stretch;
-   position: fixed;
-  /* padding: 20px; */
-   right: 33px;
+   position: absolute;
+  padding: 20px;
+  width: 15%;
+   right: 0;
    top: 123px;
+}
+.summary-box{
+  width: 100%;
+  margin-right: 0;
 }
 }
 </style>
+<div class="expensess">
 <h2 style="color: var(--text-color-2); margin-bottom: 20px;">Your Expenses</h2>
 <form method="GET" action="/expenses" style="margin-bottom: 20px" class="filter-form">
 
@@ -291,9 +307,8 @@ button{
     <option {% if selected_category == "Food" %}selected{% endif %}>Food</option>
     <option {% if selected_category == "Bills" %}selected{% endif %}>Bills</option>
     <option {% if selected_category == "Travel" %}selected{% endif %}>Travel</option>
-    <option {% if selected_category == "Others" %}selected{% endif %}>Grosery</option>
-    <option {% if selected_category == "Others" %}selected{% endif %}>Food</option>
-    <option {% if selected_category == "Others" %}selected{% endif %}>Clothing</option>
+    <option {% if selected_category == "Grosery" %}selected{% endif %}>Grosery</option>
+    <option {% if selected_category == "Clothing" %}selected{% endif %}>Clothing</option>
     <option {% if selected_category == "Others" %}selected{% endif %}>Others</option>
   </select>
   <button type="submit">Filter</button>
@@ -345,7 +360,7 @@ button{
     {% endif %}
 </h3>
 </div>
-
+</div>
 
    
 {% endblock %}

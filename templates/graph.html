@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}Graph{% endblock %}
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
@@ -8,9 +8,15 @@
   <title>Expense Graph</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
     body {
       color: #ffffff;
       font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
     }
   
     h2 {
@@ -30,10 +36,12 @@
 }
     .chart-container {
       max-width: 400px;
-      margin: 40px auto;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
       padding: 20px;
       background: #1e293b;
-      /* background-color: var(--box-color); */
       border-radius: 12px;
       color: #ffffff;
       box-shadow: 0 0 10px rgba(31, 30, 30, 0.4);
@@ -41,14 +49,17 @@
 
     canvas {
       width: 100% !important;
-      height: 400px !important;
+      height: auto !important;
     }
-    @media  screen and (max-width:700px) {
+@media  screen and (max-width:700px) {
+      .box{
+        flex-direction: column;
+        align-items: center;
+      }
       .chart-container{
         max-width: 100%;
-        width: 280px;
+        width: 300px;
         font-size: 0.9rem;
-        /* height: 50vh; */
       }
       canvas {
         

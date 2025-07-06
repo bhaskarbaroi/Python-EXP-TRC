@@ -2,6 +2,7 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 <style>
+  
     body{
         background-color: rgba(182, 208, 235);
         position: relative;
@@ -9,21 +10,33 @@
     }
     h1{
         color: var(--text-color-2);
-        margin-top: 40px;
+        margin-top: 80px;
+        margin-bottom: 15px;
+    }
+        .home,.home2{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        /* line-height: 1.7; */
     }
     
     h2,p{
         color: var(--text-color);
+        /* padding-bottom: 10px; */
+
     }
 
     .uname{
         display: flex;
         align-items: center;
         justify-content: center;
-        /* padding-left: 6px; */
+        padding-left: 6px;
+        /* padding:5px 10px; */
+
     }
     .name{
-        padding:0px 8px;
+        padding-left:7px;
     }
     .name:hover{
         background-image: linear-gradient(to left,#f3341b,rgb(235, 85, 26),#eebe21e3);
@@ -34,34 +47,33 @@
 
     }
     .set_g{
-    background:linear-gradient(to left,#fc452d,rgb(248, 152, 63),#f1e75be3);
+            background:linear-gradient(to left,#f81f02,rgb(245, 121, 6),rgb(224, 224, 39));
         display: flex;
         align-items: center;
         display: flex;
     align-items: center;
     align-content: center;
     padding: 14px;
-    width: 98px;
+    width: 86px;
     border-radius: 93px;
     position: absolute;
-    top: 79px;
-    right: 53px;
+    top: 165px;
+    right: 116px;
     z-index: 10;
+    font-size: 11px;
 }
     
     .set_g:hover{
-            background:linear-gradient(to left,#f5452d,rgb(233, 133, 39),#d8af2ae3);
+            background:linear-gradient(to left,#f81f02,rgb(245, 121, 6),yellow);
             transform: scale(1.04);
+            font-size: 12px;
 
     }
-    .home,.home2{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+
     .display_exp{
         display: flex; 
-        gap: 20px;
+        flex-wrap: wrap;
+        gap: 30px;
          justify-content: center;
          margin-top: 30px;
     }
@@ -73,7 +85,7 @@
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
     .today_exp:hover,.month_exp:hover{
-            background:linear-gradient(to left,#f3341b,rgb(235, 85, 26),#eebe21e3);
+            background:linear-gradient(to left,#f3341b,rgb(235, 85, 26),rgba(255, 255, 0, 0.918));
             transform: scale(1.03);
         transition: background-color 0.3s ease;
 
@@ -84,14 +96,20 @@ font-size: 1.4em; font-weight: bold; color: #edf0f3dc;
     }
     .month_exp,.today_exp{
         margin-left: 20px;
-background: #0e3055b4; border-radius: 10px; padding: 20px; box-shadow: 0 0 3px rgba(180, 174, 174, 0.5);
+        background: #0e3055b4;
+        border-radius: 10px;
+        padding: 20px;
+        padding-bottom: 40px;
+         box-shadow: 0 0 3px rgba(180, 174, 174, 0.5);
     }
     .month_exp p{
         font-size: 1.4em; font-weight: bold; color: #edf0f3dc;
+        
     }
 
     .foot{
         text-align: center; margin-top: 65px;
+        padding-bottom: 30px;
         
     }
     .foot a{
@@ -107,12 +125,80 @@ background: #0e3055b4; border-radius: 10px; padding: 20px; box-shadow: 0 0 3px r
     .set_g{
         display: none;
     }
+    .top-line{
+        display: none;
+    }
+    .display_exp{
+        flex-direction: column;
+        }
+        .today_exp,.month_exp{
+            /* width: 100%; */
+            padding-right:20px ;
+            margin-right: 20px;
+        }
 }
+@media screen and (max-width:668px){
+.nav ul{
+    top: 2px;
+    right: 2px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+}
+
+
+}
+  .nav a{
+        text-decoration: none;
+        color: var(--text-color);
+                       background-color: #0e3055b4;
+                       border-radius: 10px;
+     padding: 5px 9px;
+     margin: 6px;
+
+    }
+    nav ul{
+        display: flex;
+ /* float: right; */
+position: absolute;
+        right: 30px;
+        top: 2px;
+     /* margin-bottom: 9px; */
+        text-decoration: none;
+        list-style: none;
+    }
+      
+    .nav a:hover{
+            background:linear-gradient(to left,#f81f02,rgb(245, 121, 6),yellow);
+            transform: scale(1.04);
+    }
+    .top-line{
+        /* max-width: 500px; */
+        min-width:70% ;
+    margin: auto;
+    height: 1px;
+    position: absolute;
+    top: 65px;
+    background-color: whitesmoke;
+
+    }
 
 </style>
 
+<nav>
+    <div class="nav">
+        <ul>
+            <li><a href="/graph">Graph</a></li>
+            <li><a href="/expenses">Expenses</a></li>
+            <li><a target="_blank" href="https://github.com/bhaskarbaroi/Python-EXP-TRC/">Code</a></li>
+            
+        </ul>
+    </div>
+</nav>
 
 <div class="home">
+    <div class="top-line"></div>
     <h1>Welcome to our Expense Tracker </h1></div>
     <div class="uname">
     <h2>dear !  <h2 class="name">{{ username.title() }}</h2></h2></div>

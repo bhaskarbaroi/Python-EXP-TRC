@@ -1,7 +1,8 @@
 {% extends "base.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}Add{% endblock %}
 {% block content %}
 <style>
+  
   form{
     width:500px;
     /* width: 100%; */
@@ -12,6 +13,11 @@
         box-shadow: 0 0 15px rgba(1, 0, 0, 0.205);
 
 
+  }
+  .add-expense-form{
+    display: flex;
+    flex-direction: column;
+    gap:10px
   }
   input, select{
     width: 90%;
@@ -59,8 +65,9 @@
 }
   
 </style>
+<div class="box">
 <h2 style="color: var(--text-color-2)">Add Expenses</h2>
-<form method="POST">
+<form class="add-expense-form" method="POST">
   <input class="my-input" type="text" name="title" placeholder="Title " required>
   <select style="width: 95%;" name="category" required>
     <option value="">Select category</option>
@@ -72,8 +79,9 @@
     <option value="Others">Other</option>
   </select>
   <input type="number" name="amount" placeholder="Amount" required>
-  <input style="" type="date" name="date" required>
+  <input type="date" name="date"  placeholder="DD/MM/YYYY" required>
   <div class="butt">
   <button type="submit">   {% if bg_color =='#0d1b2a' %} <img src="/static/icons/add-black.jpg" width="20px"> {% else %} <img src="/static/icons/add_6569764.png" width="20px"> {% endif %}  Add</button></div>
 </form>
+</div>
 {% endblock %}
