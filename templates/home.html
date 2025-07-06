@@ -137,16 +137,28 @@ font-size: 1.4em; font-weight: bold; color: #edf0f3dc;
             margin-right: 20px;
         }
 }
-@media screen and (max-width:668px){
+@media  (max-width:680px){
 .nav ul{
-    top: 2px;
-    right: 2px;
+    top: 0px;
+    right: 1px;
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    flex-direction: column;
+
+}
+.nav li a{
+    font-size: 0.8rem;
+    margin: 2px;
+    padding: 5px;
 
 }
 
+
+}
+@media (max-width:368px){
+.nav li a{
+    margin: 2px;
+}
 
 }
   .nav a{
@@ -158,7 +170,7 @@ font-size: 1.4em; font-weight: bold; color: #edf0f3dc;
      margin: 6px;
 
     }
-    nav ul{
+   nav ul{
         display: flex;
  /* float: right; */
 position: absolute;
@@ -166,6 +178,7 @@ position: absolute;
         top: 2px;
      /* margin-bottom: 9px; */
         text-decoration: none;
+      
         list-style: none;
     }
       
