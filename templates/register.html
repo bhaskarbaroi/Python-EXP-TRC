@@ -214,9 +214,31 @@ color: white;
 .links a{
 margin-left: 4px;
 }
+.alert{
+  padding:8px;
+  margin: 3px 0;
+  border-radius: 8px;
+
+}
+.alert-success { 
+  background-color: #edf0ed;
+color:#065e1b;
+}
+.alert-danger{
+background-color: #d8c4c6;
+  color: red;
+}
   </style>
 </head>
 <body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+       <div class="alert alert-{{ category }}">{{ message }} </div>
+    {% endfor %}
+    
+  {% endif %}
+{% endwith %}
 <div class="container">
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">

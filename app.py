@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, session ,flash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import extract, func
-
 from datetime import datetime,date
+
 app = Flask(__name__)
 app.secret_key = "supersecretkey"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///expenses.db'
@@ -31,23 +31,31 @@ def index():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    flash("Successfully login")
     if request.method == "POST":
         user = User.query.filter_by(username=request.form["username"]).first()
         if user and user.password == request.form["password"]:
             session["user_id"] = user.id
-            flash("Login successful")
+            flash("Login successful","success")
             return redirect(url_for("home"))
-        return redirect(url_for("register"))
+        else:
+           flash("Given Password is Wrong!, Try again", "danger")
+           return redirect(url_for("login"))
     return render_template("login.html")
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    flash("Registered successfully")
     if request.method == "POST":
+        username = request.form["username"]
+        existing_user = User.query.filter_by(username=username).first()
+        if existing_user:
+            flash("Username already exist","danger")
+            return redirect(url_for("register"))
+
+
         new_user = User(username=request.form["username"], password=request.form["password"])
         db.session.add(new_user)
         db.session.commit()
+        flash("Registered successfully! Now pls login","success")
         return redirect(url_for("login"))
     return render_template("register.html")
 

@@ -121,6 +121,7 @@
 
 html,body{
 background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+background-image: url("/static/icons/background.jpg");
 background-size: cover;
 background-repeat: no-repeat;
 height: 100%;
@@ -204,9 +205,29 @@ color: white;
 .links a{
 margin-left: 4px;
 }
+.alert{
+  padding:8px;
+  margin: 3px 0;
+  border-radius: 8px;
+
+}
+.alert-success { 
+color:rgb(9, 231, 9);
+}
+.alert-danger{
+  color: red;
+}
   </style>
 </head>
 <body>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+       <div class="alert alert-{{ category }}">{{ message }} </div>
+    {% endfor %}
+    
+  {% endif %}
+{% endwith %}
 <div class="container">
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
@@ -243,5 +264,6 @@ margin-left: 4px;
 		</div>
 	</div>
 </div>
+
 </body>
 </html>
