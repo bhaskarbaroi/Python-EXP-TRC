@@ -14,6 +14,7 @@ class User(db.Model):
     username = db.Column(db.String(100), unique=False, nullable=False)
     password = db.Column(db.String(100), nullable=False)
     bg_color = db.Column(db.String(50), default='#0d1b2a')
+    monthly_budget = db.Column(db.Float, default=0.0)
 
 class Expense(db.Model):
 
@@ -129,7 +130,6 @@ def view_expenses():
 
     expenses = query.order_by(Expense.date.desc()).all()
     total_amount = sum(e.amount for e in expenses)
-    budget = session.get('monthly_budget', 0)
 
     return render_template(
         "expenses.html",
@@ -141,18 +141,22 @@ def view_expenses():
         selected_category=selected_category,
         username=user.username,
         bg_color=user.bg_color,
-        budget = budget
+        budget = user.monthly_budget
 )
 @app.route('/set_budget', methods=['GET', 'POST'])
 def set_budget():
+    if "user_id" not in session:
+        return redirect("/login")
+  
     user = User.query.get(session.get("user_id")) 
 
     if request.method == 'POST':
-        session['monthly_budget'] = float(request.form['budget'])
+        user.monthly_budget = float(request.form['budget'])
+        db.session.commit()
         flash('Monthly budget set successfully!', 'success')
         return redirect('/expenses')
-    if 'monthly_budget' in session:
-        flash(f"budget already set: ₹{session['monthly_budget']}. you can update it. ","warning")
+    if user.monthly_budget > 0:
+        flash(f"budget already set: ₹{user.monthly_budget}. you can update it. ","warning")
       
     return render_template('set_budget.html', username=user.username,bg_color=user.bg_color)
 
